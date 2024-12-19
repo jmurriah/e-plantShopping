@@ -34,6 +34,10 @@ const CartItem = ({ onContinueShopping }) => {
   const handleDecrement = (item) => {
     console.log("Entering handleDecrement in CartItem")
     const updatedItem = { ...item };
+    if (updatedItem.quantity === 1) {
+      dispatch(removeItem(updatedItem));
+      return;
+    }
     updatedItem.quantity--;
     dispatch(updateQuantity(updatedItem));    
   };
