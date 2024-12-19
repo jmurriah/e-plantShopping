@@ -254,8 +254,9 @@ const handlePlantsClick = (e) => {
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-   const handleContinueShopping = (e) => {
-    e.preventDefault();
+const handleContinueShopping = (e) => {
+    console.log("Entering handleContinueShopping in Product List")
+    //e.preventDefault();
     setShowCart(false);
   };
     return (
