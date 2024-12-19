@@ -247,19 +247,18 @@ const handlePlantsClick = (e) => {
     setShowCart(false);
   };
     return (
-        <div>
-             <div className="navbar" style={styleObj}>
+    <div>
+        <div className="navbar" style={styleObj}>
             <div className="tag">
-               <div className="luxury">
-               <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
-               <a href="/" style={{textDecoration:'none'}}>
-                        <div>
-                    <h3 style={{color:'white'}}>Paradise Nursery</h3>
-                    <i style={{color:'white'}}>Where Green Meets Serenity</i>
+                <div className="luxury">
+                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
+                <a href="/" style={{textDecoration:'none'}}>
+                    <div>
+                        <h3 style={{color:'white'}}>Paradise Nursery</h3>
+                        <i style={{color:'white'}}>Where Green Meets Serenity</i>
                     </div>
-                    </a>
+                </a>
                 </div>
-              
             </div>
             <div style={styleObjUl}>
                 <div> <a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
@@ -267,13 +266,41 @@ const handlePlantsClick = (e) => {
             </div>
         </div>
         {!showCart? (
-        <div className="product-grid">
+            <div className="product-grid">
+                {plantsArray.map(function(cat){
+                    return(
+                        <div className='category_container'>
+                            {cat.category}
+
+                            {cat.plants.map(function(plant){
+                                return(
+                                    <div className='product-card'>
+                                        <div className='product-title'> {plant.name}</div>
+                                        <div className='product-image'>
+                                            <img src={plant.image}></img>
+                                        </div>
+                                        <p>{plant.description}</p>
+                                        <div className='product-prize'> {plant.cost}</div>
+                                        <button 
+                                            className="add-to-cart-btn" 
+                                            onClick={() => handleCartClick(product)}
+                                            >
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                )
+                            })}
 
 
-        </div>
- ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
-)}
+
+                        </div>
+                    )
+                })}
+
+            </div>
+        ) :  (
+            <CartItem onContinueShopping={handleContinueShopping}/>
+        )}
     </div>
     );
 }
